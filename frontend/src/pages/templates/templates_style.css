@@ -1,0 +1,86 @@
+.header{
+  grid-area: header;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 0.5rem;
+  padding-top: 2rem;
+}
+
+.brand{
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+
+.brand a {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.menu-links a {
+  color: #ffffff;
+  padding-left: 2rem;
+}
+
+.menu-links a:hover {
+  color: #ff8000;
+}
+
+.footer{
+  grid-area: footer;
+  background-color: #203040; 
+  color: #ffffff;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.bigfooter {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  height: fit-content;
+}
+
+.bigfooter div {
+  /* padding: 2rem; */
+  background-color: aliceblue;
+  padding-left: 7rem;
+}
+
+.one {
+  flex: 1;
+}
+
+.two {
+  flex: 1;
+  border-left: 0.1rem #000000 solid;
+}
+
+.three {
+  flex: 1;
+  border-left: 0.1rem #000000 solid;
+}
+
+.footer-links {
+  color: #616161;
+}
+
+ul {
+  list-style-type: none;
+  /* padding: 1rem; */
+}
+
+li {
+  padding-bottom: 1rem;
+}
+
+li:first-child {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
