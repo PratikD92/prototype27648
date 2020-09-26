@@ -1,0 +1,58 @@
+.tiffin-list {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tiffin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.tiffin-list li {
+  list-style-type: none;
+  padding: 2rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  flex: 0 1 34rem;
+  margin: 1;
+  width: 34rem;
+  height: 30rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.image-div {
+  display: flex;
+  justify-content: left;
+  max-width: 34rem;
+  max-height: 17rem;
+  background-color: antiquewhite;
+}
+
+.image-div :hover {
+  background-color: brown;
+  
+}
+
+.tiffin-image {
+  max-width: 34rem;
+  max-height: 17rem;
+}
+
+.tiffin-name {
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+
+.meal-price-search-result {
+  text-align: right;
+}
+
+.meal_search_page_table {
+  /* border: 0.5rem; */
+  width: 14rem;
+  /* background-color: antiquewhite; */
+}

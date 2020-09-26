@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+
 
 function UploadImg() {
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
-    // <img src={'/images/img.png'} />
-    <img src={"http://127.0.0.1/images/img.png"} />
+    <div>
+      <button onClick={() => setModalIsOpen(true)}>Open</button>
+      <Modal isOpen={modalIsOpen}>
+        <h2>Title</h2>
+        <p>Details</p>
+        <div>
+          <button onClick={() => setModalIsOpen(false)}>Close</button>
+        </div>
+      </Modal>
+
+      {/* <button onClick={setModalIsOpen(false)}>Open</button> */}
+
+    </div>
   );
 
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { MAIN_SEARCH_REQUEST, MAIN_SEARCH_SUCCESS, MAIN_SEARCH_FAIL } from '../constants/user_constants';
+import { MAIN_SEARCH_REQUEST, MAIN_SEARCH_SUCCESS, MAIN_SEARCH_FAIL, TIFFIN_DETAILS_FETCH_REQUEST, TIFFIN_DETAILS_FETCH_SUCCESS, TIFFIN_DETAILS_FETCH_FAIL } from '../constants/user_constants';
 
-
+// SEARCHING TIFFINS
 const MainSearchAction = (area, props) => async (dispatch) => {
   try {
     dispatch({
@@ -22,4 +22,27 @@ const MainSearchAction = (area, props) => async (dispatch) => {
   }
 };
 
-export { MainSearchAction };
+
+// VIEWING TIFFIN DETAILS
+const GetTiffinDetailAction = (id, props) => async (dispatch) => {
+
+  try {
+    dispatch({
+      type: TIFFIN_DETAILS_FETCH_REQUEST
+    });
+
+    const {data} = await axios.get('/vendor/get/details/' + id);
+    dispatch({
+      type: TIFFIN_DETAILS_FETCH_SUCCESS,
+      payload: data
+    });
+  }
+  catch (error) {
+    dispatch({
+      type: TIFFIN_DETAILS_FETCH_FAIL,
+      payload: error.message
+    });
+  }
+};
+
+export { MainSearchAction, GetTiffinDetailAction };

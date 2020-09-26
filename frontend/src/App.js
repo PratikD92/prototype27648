@@ -10,6 +10,7 @@ import VendorLoginPage from './pages/vendorLogin';
 import VendorRegistrationPage from './pages/vendorRegistration';
 import ShowAllVendorsPage from './pages/ShowAllVendorsPage';
 import SearchResultPage from './pages/SearchResultPage';
+import TiffinDetailsPage from './pages/TiffinDetailsPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Route path="/business-registration" component={VendorRegistrationPage} />
       <Route path="/allvendors" component={ShowAllVendorsPage} />
       <Route path="/search-tiffins" component={SearchResultPage} />
+      <Route path="/tiffin-details/:id" component={TiffinDetailsPage} />
 
       <Route path="/test" exact={true} component={TestPage} />
 

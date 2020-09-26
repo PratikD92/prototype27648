@@ -71,16 +71,16 @@
   color: #616161;
 }
 
-ul {
+.footer-list {
   list-style-type: none;
   /* padding: 1rem; */
 }
 
-li {
+.footer-list li {
   padding-bottom: 1rem;
 }
 
-li:first-child {
+.footer-list li:first-child {
   font-weight: bold;
   font-size: 1.75rem;
 }

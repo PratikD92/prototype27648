@@ -12,7 +12,8 @@ const app = express();
 // MIDDLEWARES
 dotenv.config();
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
+app.use('../frontend/public/images/', express.static('images'));
 
 // user routes
 app.use('/user/get', user_get_router);

@@ -1,14 +1,15 @@
 import { getAllUsersReducer, getAllVendorsReducer } from "./adminReducers";
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { mainSearchReducer } from "./userReducers";
+import { mainSearchReducer, tiffinDetailsReducer } from "./userReducers";
 
 const initialState = {};
 
 const reducer = combineReducers({
   allUsersList: getAllUsersReducer,
   allVendorsList: getAllVendorsReducer,
-  searchedVendors: mainSearchReducer
+  searchedVendors: mainSearchReducer,
+  tiffinDetails: tiffinDetailsReducer
 });
 
 const store = createStore(reducer,

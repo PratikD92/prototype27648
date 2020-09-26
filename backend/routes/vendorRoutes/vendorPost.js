@@ -4,11 +4,16 @@ import vendorModel from '../../models/vendor.model';
 import { registrationValidation } from '../../validations/vendorDataValidation';
 import multer from 'multer';
 
+// -----------------------------------------------------------------
+// REGISTRATION
+// -----------------------------------------------------------------
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '../../../uploads');
+    // cb(null, __dirname + '../../../uploads');
+    cb(null, __dirname + '../../../../frontend/public/images/');
   },
-  filename: function (req, file, cb){
+  filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
   }
 });
@@ -16,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024*1024*5
+    fileSize: 1024 * 1024 * 5
   }
 });
 
@@ -24,7 +29,7 @@ const vendor_post_router = express();
 vendor_post_router.use(express.json());
 
 vendor_post_router.post("/register", upload.single('business_image'), async (req, res) => {
-  
+
   const meals = JSON.parse(req.body.meals);
 
   // check validation
@@ -39,14 +44,17 @@ vendor_post_router.post("/register", upload.single('business_image'), async (req
   const password = req.body.password;
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  
 
+  // Registering uploaded file path relative to how it would seem to frontend
+  const filepath = (req.file.path).split('/public')[1]
+
+  
   // if validation passed, then take input as per customer DB model
 
   const vendor = new vendorModel({
     business_name: req.body.business_name,
     business_address: req.body.business_address,
-    business_image: req.file.path,
+    business_image: filepath,
     meals_provided: meals,
     password: hashedPassword
   });
@@ -62,14 +70,8 @@ vendor_post_router.post("/register", upload.single('business_image'), async (req
 });
 
 
-// TEST
-vendor_post_router.post("/registerfile", upload.single('business_image'), async (req, res) => {
-  // console.log(upload.single('business_image'))
-  console.log(req.body.business_name);
-  // console.log(req.body.business_image);
-  console.log(req.file.path);
-  
-  // console.log(req.file.path);
-});
+// -----------------------------------------------------------------
+// LOGIN
+// -----------------------------------------------------------------
 
 export default vendor_post_router;

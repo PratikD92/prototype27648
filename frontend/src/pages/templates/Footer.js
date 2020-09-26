@@ -14,7 +14,7 @@ function Footer() {
 
         {/* MIDDLE COLUMN */}
         <div className="two">
-          <ul>
+          <ul className="footer-list">
             <li>
               BUSINESS
             </li>

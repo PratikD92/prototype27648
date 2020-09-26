@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../form_style.css';
 import Header from "./templates/Header";
 import Footer from "./templates/Footer";
-// import axios from 'axios';
+import axios from 'axios';
 // import { useSelector, useDispatch } from "react-redux";
 
 function LoginPage(props) {
@@ -11,19 +11,14 @@ function LoginPage(props) {
   // const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const subdata = () => {
+  const subdata = async () => {
     try {
-      console.log('here');
-      console.log('Email -> ' + email);
-      console.log('Password -> ' + password);
+      // console.log('here');
+      // console.log('Email -> ' + email);
+      // console.log('Password -> ' + password);
 
-      // const d = await axios.get('/user/get/all');
-      // console.log(d);
-      // const { data } = await axios.post('/user/post/register', {
-      //   name: name,
-      //   email: email,
-      //   password: password
-      // });
+      await axios.post('/user/post/login', 
+      { email, password }).then(props.history.push("/"));
     }
     catch (error) {
       console.log(error);

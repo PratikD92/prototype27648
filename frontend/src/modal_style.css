@@ -1,0 +1,69 @@
+.modal-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  flex: 2 1 60rem;
+}
+
+.modal-heading {
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding-left: 2rem;
+}
+
+.modal-image-div {
+  display: flex;
+  justify-content: center;
+  width: 50rem;
+  max-height: 45rem;
+  border: 0.1rem #000000 solid;
+}
+
+.modal-image {
+  max-width: 50rem;
+  max-height: 45rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* .modal-details { */
+  /* width: 40rem; */
+  /* border: 0.1rem #000000 solid; */
+/* } */
+
+.meal-row {
+  display: flex;
+  justify-content: left;
+  /* align-items: flex-start; */
+  /* border: 0.1rem #000000 solid; */
+}
+
+.tdd {
+  border: 0.1rem #000000 solid;
+  width: 5rem;
+}
+
+.modal-close {
+  display: flex;
+  padding-top: 2rem;
+  justify-content: center;
+  border-top: 0.1rem #000000 solid;
+}
+
+.modal-checkout {
+  border-top: 0.1rem #aaaaaa solid;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  padding: 0%;
+  background-color: wheat;
+}
+
+.checkout-button {
+  width: 15rem;
+  background-color: cyan;
+}
