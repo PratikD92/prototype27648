@@ -16,7 +16,7 @@ function SearchResultPage(props) {
   const [blocality, setBLocality] = useState('');
   const [bmeals, setBmeals] = useState([]);
 
-  let pic = '';
+  Modal.setAppElement("#root");
 
   const vendorsList = useSelector(state => state.searchedVendors);
   const { searchedVendorsList, loading, error } = vendorsList;
@@ -36,7 +36,7 @@ function SearchResultPage(props) {
       <Header />
       <main className="main">
 
-        <Modal isOpen={modalIsOpen}>
+        <Modal isOpen={modalIsOpen} className='modal-body'>
 
           <div className="modal-heading">
             {bname}
@@ -50,20 +50,22 @@ function SearchResultPage(props) {
 
             <div className="modal-details">
               <ul>
-                <li>
+                <li className="flex-heading">
                   {blocality}
                 </li>
 
                 <li>
-                  <div>
-                    <strong>Meals:</strong>
+                  <div className='meals-div'>
+                    <p>Meals:</p>
                     <table>
                       <tbody>
                         {bmeals.map(function (i) {
                           return <tr>
+                            <td><input type="checkbox" /></td>
                             <td>{i['meal']}</td>
-                            <td>
+                            <td><strong>
                               : ₹{i['price']}
+                            </strong>
                             </td>
                           </tr>;
                         })}
@@ -76,6 +78,7 @@ function SearchResultPage(props) {
 
             <div className="modal-checkout">
               <ul>
+                <li className="flex-heading">Summary</li>
                 <li>Services: </li>
                 <li>Total: </li>
                 <li>
@@ -88,14 +91,19 @@ function SearchResultPage(props) {
           </div>
 
           <div className="second-row">
-            <div>
-              <h4>Description:</h4>
+            <div className="modal-tiffin-description">
+              <p className="description-title">Description:</p>
               <p>Lorem ipsum dolor sit amet</p>
             </div>
 
-            <div className="modal-close">
-              <button onClick={() => setModalIsOpen(false)}>Close</button>
+            <div className='modal-trial'>
+              <p>I wish to take a trial meal..</p>
             </div>
+          </div>
+
+          <div className="modal-close">
+            <p onClick={() => setModalIsOpen(false)}>X</p>
+            {/* <button onClick={() => setModalIsOpen(false)}>Close</button> */}
           </div>
 
         </Modal>

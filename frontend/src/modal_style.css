@@ -1,25 +1,37 @@
-.modal-main {
+.modal-body {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  margin: auto;
+  flex-direction: column;
+  background-color: #434343bf;
+  width: 75%;
   padding-left: 2rem;
   padding-right: 2rem;
-  flex: 2 1 60rem;
+  padding-top: 2rem;
+  border: none;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+
+.modal-main {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .modal-heading {
   font-weight: bold;
-  font-size: 2.5rem;
-  padding-left: 2rem;
+  font-size: 3rem;
 }
 
+/* FIRST COLUMN IMAGE */
 .modal-image-div {
-  display: flex;
-  justify-content: center;
+  flex:2;
   width: 50rem;
   max-height: 45rem;
-  border: 0.1rem #000000 solid;
 }
 
 .modal-image {
@@ -27,43 +39,105 @@
   max-height: 45rem;
 }
 
-ul {
-  list-style-type: none;
+
+/* TIFFIN DETAILS */
+.modal-details {
+  flex: 1;
 }
 
-/* .modal-details { */
-  /* width: 40rem; */
-  /* border: 0.1rem #000000 solid; */
-/* } */
+li {
+  padding-bottom: 1rem;
+}
 
-.meal-row {
+/* MEALS */
+.meals-div p {
+  font-size: 1.85rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.meals-div input {
+  margin: 0;
+  width: 3rem;
+}
+
+.flex-heading {
+  font-weight: 400;
+  font-size: 2.25rem;
+}
+
+/* CHECKOUT FLEX */
+.modal-checkout {
+  flex: 1;
+  /* border: 0.1rem #aaaaaa solid; */
+}
+
+.checkout-button {
+  cursor: pointer;
+  width: 100%;
+  /* background-color: #ffffff73; */
+  background-color: #2bb39a73;
+  color: #ffffff;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  /* text-shadow: 1px 1px 2px #000000; */
+}
+
+.checkout-button:hover {
+  background-color: #ffffffa6;
+  color: #000000D9;
+}
+
+/* SECOND ROW */
+
+.second-row {
   display: flex;
-  justify-content: left;
-  /* align-items: flex-start; */
-  /* border: 0.1rem #000000 solid; */
+  justify-content: space-between;
 }
 
-.tdd {
-  border: 0.1rem #000000 solid;
-  width: 5rem;
+.modal-tiffin-description {
+  display: flex;
+  flex-direction: column;
+  border: 0.2rem #000000 solid;
+
+}
+
+.description-title {
+  margin-bottom: 0%;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.modal-trial {
+  text-decoration: underline;
+  border: 0.2rem #000000 solid;
+}
+
+.modal-trial p {
+  cursor: pointer;
 }
 
 .modal-close {
   display: flex;
-  padding-top: 2rem;
+  /* padding-top: 1rem; */
   justify-content: center;
-  border-top: 0.1rem #000000 solid;
+  border-top: 0.1rem #ffffffA3 solid;
 }
 
-.modal-checkout {
-  border-top: 0.1rem #aaaaaa solid;
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
-  padding: 0%;
-  background-color: wheat;
+.modal-close p {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0;
+  padding: 2rem;
+  color: #ffffffD9;
 }
 
-.checkout-button {
-  width: 15rem;
-  background-color: cyan;
+.modal-close p:hover {
+  cursor: pointer;
+  color: #fffffff2;
+}
+
+ul {
+  list-style-type: none;
 }

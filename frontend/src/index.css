@@ -47,7 +47,8 @@ a {
 .main{ 
   grid-area: main;
   padding: 1rem;
-}
+  }
+
 
 .search-main {
   display: flex;
