@@ -41,9 +41,10 @@ const vendorSchema = mongoose.Schema({
   // Statistics
   registration_date: {type: Date, default: Date.now},
   // number_of_orders: { type: Number },
-  // total_number_of_customers: { type: Number },
+  trial_meal_requests: {type:Number},
+  total_number_of_customers: { type: Number },
   // total_active_of_customers: { type: Number },
-  // serving_customer_ids: { type: Array, default: [] },
+  serving_customer_ids: { type: Array, default: [] },
   // meal_wise_statistics: [{
   //   meal: { type: String, required: true },
   //   number_of_customers: { type: Number }

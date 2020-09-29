@@ -1,4 +1,4 @@
-import { MAIN_SEARCH_REQUEST, MAIN_SEARCH_SUCCESS, MAIN_SEARCH_FAIL, TIFFIN_DETAILS_FETCH_REQUEST, TIFFIN_DETAILS_FETCH_SUCCESS, TIFFIN_DETAILS_FETCH_FAIL } from "../constants/user_constants";
+import { MAIN_SEARCH_REQUEST, MAIN_SEARCH_SUCCESS, MAIN_SEARCH_FAIL, TIFFIN_DETAILS_FETCH_REQUEST, TIFFIN_DETAILS_FETCH_SUCCESS, TIFFIN_DETAILS_FETCH_FAIL, CHECKOUT_DETAILS_SUCCESS } from "../constants/user_constants";
 
 // TIFFIN SEARCH REDUCER
 function mainSearchReducer(state = { searchedVendorsList: [] }, action) {
@@ -30,11 +30,21 @@ function tiffinDetailsReducer(state = { tiffin_details_state: [] }, action) {
 
     case TIFFIN_DETAILS_FETCH_FAIL:
       return { loading: false, error: action.payload };
-    
+
     default:
       return state;
   }
 
 };
 
-export { mainSearchReducer, tiffinDetailsReducer };
+// CHECKOUT DETAILS REDUCER
+function checkoutDetailsReducer(state = { checkoutDataState: {} }, action) {
+  switch (action.type) {
+    case CHECKOUT_DETAILS_SUCCESS:
+      return { checkoutDataState: action.payload };
+    default:
+      return state;
+  }
+};
+
+export { mainSearchReducer, tiffinDetailsReducer, checkoutDetailsReducer };

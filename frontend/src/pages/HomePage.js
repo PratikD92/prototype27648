@@ -4,7 +4,6 @@ import Footer from "./templates/Footer";
 import Header from "./templates/Header";
 import { useDispatch } from "react-redux";
 import { MainSearchAction } from "../actions/userActions";
-// import { MainSearchAction } from "../actions/userActions";
 
 function HomePage(props) {
   const [area, setArea] = useState('');

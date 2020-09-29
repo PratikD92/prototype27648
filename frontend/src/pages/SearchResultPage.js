@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from './templates/Header';
 import Footer from './templates/Footer';
 import "../search_result.css";
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import "../modal_style.css";
+import { CheckoutAction } from '../actions/userActions';
 
 function SearchResultPage(props) {
+
+  const dispatch = useDispatch()
+  Modal.setAppElement("#root");
 
   // Opening modal using state
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -15,12 +19,35 @@ function SearchResultPage(props) {
   const [bimage, setBimage] = useState('');
   const [blocality, setBLocality] = useState('');
   const [bmeals, setBmeals] = useState([]);
-
-  Modal.setAppElement("#root");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [servicesSubscribed, setServicesSubscribed] = useState('');
 
   const vendorsList = useSelector(state => state.searchedVendors);
   const { searchedVendorsList, loading, error } = vendorsList;
   console.log(searchedVendorsList);
+
+  const handleCheckout = () => {
+    const data = {
+      servicesSubscribed: servicesSubscribed.slice(0, servicesSubscribed.length - 3),
+      totalPrice: totalPrice,
+      tiffinName: bname
+    }
+    dispatch(CheckoutAction(data)).then(props.history.push("/user-checkout"))
+  };
+
+
+  const check_change = (meal, e) => {
+    const checked = e.target.checked;
+    const service = meal.meal;
+    if (checked) {
+      setServicesSubscribed(servicesSubscribed + service + ' + ');
+      setTotalPrice(totalPrice + meal.price);
+    }
+    else {
+      setServicesSubscribed(servicesSubscribed.replace(service + " + ", ''));
+      setTotalPrice(totalPrice - meal.price);
+    }
+  };
 
   const modalFunction = (t) => {
     setModalIsOpen(true);
@@ -30,11 +57,21 @@ function SearchResultPage(props) {
     setBmeals(t.meals_provided);
   };
 
+  const modalCloseFunction = () => {
+    setModalIsOpen(false);
+    setTotalPrice(0);
+    setServicesSubscribed('');
+  }
+
   return (
 
     <div className="grid-container">
       <Header />
       <main className="main">
+
+        {/* **************************************************** */}
+        {/* MODAL CODE */}
+        {/* **************************************************** */}
 
         <Modal isOpen={modalIsOpen} className='modal-body'>
 
@@ -61,7 +98,7 @@ function SearchResultPage(props) {
                       <tbody>
                         {bmeals.map(function (i) {
                           return <tr>
-                            <td><input type="checkbox" /></td>
+                            <td><input type="checkbox" id="priceCheckbox" onChange={(e) => check_change(i, e)} /></td>
                             <td>{i['meal']}</td>
                             <td><strong>
                               : ₹{i['price']}
@@ -69,20 +106,17 @@ function SearchResultPage(props) {
                             </td>
                           </tr>;
                         })}
+                        <tr className="modal-total-price">
+                          <td></td>
+                          <td></td>
+                          <td>₹{totalPrice}</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                 </li>
-              </ul>
-            </div>
-
-            <div className="modal-checkout">
-              <ul>
-                <li className="flex-heading">Summary</li>
-                <li>Services: </li>
-                <li>Total: </li>
                 <li>
-                  <button className="checkout-button">
+                  <button className="checkout-button" onClick={() => handleCheckout()}>
                     Checkout
                   </button>
                 </li>
@@ -102,13 +136,15 @@ function SearchResultPage(props) {
           </div>
 
           <div className="modal-close">
-            <p onClick={() => setModalIsOpen(false)}>X</p>
-            {/* <button onClick={() => setModalIsOpen(false)}>Close</button> */}
+            <p onClick={() => modalCloseFunction()}>X</p>
           </div>
 
         </Modal>
 
-
+        {/* **************************************************** */}
+        {/* PAGE CODE */}
+        {/* **************************************************** */}
+        
         {loading ? <div>Loading...</div> :
           error ? <div>No Records Found..</div> :
 
@@ -117,16 +153,13 @@ function SearchResultPage(props) {
                 searchedVendorsList.map(x =>
                   <li key={x['_id']}>
                     <div className="tiffin">
-                      {/* <Link to={"/tiffin-details/" + x._id}> */}
-                      {/* <div className="image-div" onClick={() => setModalIsOpen(true)}> */}
                       <div className="image-div" onClick={() => modalFunction(x)}>
 
                         <img src={x.business_image} className="tiffin-image" alt='PRODUCT' />
                       </div>
-                      {/* </Link> */}
 
                       <div className="tiffin-name">
-                        {x.business_name}
+                        <p>{x.business_name}</p>
                       </div>
 
                       <div className="tiffin-locality">
@@ -134,7 +167,7 @@ function SearchResultPage(props) {
                       </div>
 
                       <div>
-                        <strong>Meals:</strong>
+                        <p className="meals-heading">Meals:</p>
                         <table className="meal_search_page_table">
                           <tbody>
                             {x['meals_provided'].map(function (i) {
